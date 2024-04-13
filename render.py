@@ -16,7 +16,14 @@ def main():
 def visit():
     if request.method == 'POST':
         opts = webdriver.FirefoxOptions()
-        opts.add_argument("--headless")
+        opts.add_argument("--headless")  
+        opts.add_argument("--disable-gpu") 
+        opts.add_argument("--disable-extensions")
+        opts.add_argument("--disable-infobars")
+        opts.add_argument("--start-maximized")
+        opts.add_argument("--disable-notifications")
+        opts.add_argument('--no-sandbox')
+        opts.add_argument('--disable-dev-shm-usage')
         content=request.form['content']
         content=content.replace('%3C', '').replace('%3c', '').replace('%3E', '').replace('%3e', '').replace('<', '').replace('>', '')
         browser = webdriver.Firefox(options=opts)
