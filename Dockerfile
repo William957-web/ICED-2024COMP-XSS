@@ -7,7 +7,7 @@ RUN pip3 install webdriver_manager
 RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - && \
     echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list && \
     apt-get update -qqy && \
-    apt-get -qqy install google-chrome-stable=79.0.3945.36 && \
+    apt-get -qqy install google-chrome-stable=89.0.4389.114 && \
     rm /etc/apt/sources.list.d/google-chrome.list && \
     rm -rf /var/lib/apt/lists/* /var/cache/apt/*
 WORKDIR /app
