@@ -1,7 +1,6 @@
 import selenium
 from selenium import webdriver  
-from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
+from selenium.common.exceptions import WebDriverExcepti
 import time 
 from flask import *
 url = "https://iced-2024comp-xss.onrender.com/?content="
@@ -16,7 +15,7 @@ def main():
 @app.route('/visit',  methods=['GET', 'POST'])
 def visit():
     if request.method == 'POST':
-        opts = webdriver.ChromeOptions()
+        opts = webdriver.FirefoxOptions()
         opts.add_argument("--headless")  
         opts.add_argument("--disable-gpu") 
         opts.add_argument("--disable-extensions")
@@ -27,8 +26,7 @@ def visit():
         opts.add_argument('--disable-dev-shm-usage')
         content=request.form['content']
         content=content.replace('%3C', '').replace('%3c', '').replace('%3E', '').replace('%3e', '').replace('<', '').replace('>', '')
-        service = Service(executable_path=ChromeDriverManager(driver_version='114.0.5735.90').install())
-        browser = webdriver.Chrome(service=service, options=opts)
+        browser = webdriver.Firefox(options=opts)
         browser.get(url+content)
         time.sleep(5)
         browser.add_cookie({'name':'flag','value':'ICED{XsS_repl@c3_WAf_c4n_B33_easily_pwned}','path':'/'})
