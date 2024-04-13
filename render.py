@@ -21,9 +21,10 @@ def visit():
         content=content.replace('%3C', '').replace('%3c', '').replace('%3E', '').replace('%3e', '').replace('<', '').replace('>', '')
         browser = webdriver.Firefox(options=opts)
         browser.get(url+content)
+        time.sleep(5)
         browser.add_cookie({'name':'flag','value':'ICED{XsS_repl@c3_WAf_c4n_B33_easily_pwned}','path':'/'})
-        browser.get(url)
-        time.sleep(2)
+        browser.get(url+content)
+        time.sleep(5)
         browser.quit()
         return "Admin will visit it!"
     else:
