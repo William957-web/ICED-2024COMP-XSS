@@ -1,6 +1,6 @@
 import selenium
 from selenium import webdriver  
-from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.service import ChromeServiceService
 from webdriver_manager.chrome import ChromeDriverManager
 import time 
 from flask import *
