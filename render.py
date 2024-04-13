@@ -29,7 +29,7 @@ def visit():
         browser = webdriver.Firefox(options=opts)
         browser.add_cookie({'name':'flag','value':'ICED{XsS_repl@c3_WAf_c4n_B33_easily_pwned}','path':'/'})
         browser.get(url+content)
-        time.sleep(5)
+        time.sleep(15)
         browser.quit()
         return "Admin will visit it!"
     else:
