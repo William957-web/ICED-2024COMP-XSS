@@ -16,7 +16,7 @@ def visit():
     if request.method == 'POST':
         content=request.form['content']
         content=content.replace('%3C', '').replace('%3c', '').replace('%3E', '').replace('%3e', '').replace('<', '').replace('>', '')
-        browser = webdriver.PhantomJS(options=opts)
+        browser = webdriver.PhantomJS()
         browser.get(url+content)
         time.sleep(5)
         browser.add_cookie({'name':'flag','value':'ICED{XsS_repl@c3_WAf_c4n_B33_easily_pwned}','path':'/'})
