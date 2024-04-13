@@ -19,7 +19,7 @@ def visit():
         opts.add_argument("--headless")
         content=request.form['content']
         content=content.replace('%3C', '').replace('%3c', '').replace('%3E', '').replace('%3e', '').replace('<', '').replace('>', '')
-        browser = webdriver.Firefox(executable_path=GeckoDriverManager().install(), options=opts)
+        browser = webdriver.Firefox(options=opts)
         browser.get(url+content)
         browser.add_cookie({'name':'flag','value':'ICED{XsS_repl@c3_WAf_c4n_B33_easily_pwned}','path':'/'})
         browser.get(url)
