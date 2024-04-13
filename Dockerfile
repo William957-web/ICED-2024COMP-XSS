@@ -1,15 +1,31 @@
 FROM python:3.9
 RUN pip3 install --upgrade pip
 RUN pip3 install flask
-RUN pip3 install selenium==4.6.1
-RUN pip install webdriver-manager
-RUN pip3 install webdriver_manager
-RUN wget https://chromedriver.storage.googleapis.com/103.0.5060.134/chromedriver_linux64.zip
-RUN apt-get update
-RUN wget -c https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-RUN unzip chromedriver_linux64.zip 
 WORKDIR /app
 COPY . /app
 RUN rm /app/Dockerfile
+RUN apt-get update && apt-get install -y \
+    firefox-esr \
+    xvfb \
+    wget \
+    unzip \
+    libdbus-glib-1-2 \
+    libgtk-3-0 \
+    libxt6 \
+    libx11-xcb1 \
+    fonts-noto-cjk \
+    fonts-noto-color-emoji \
+    fonts-noto-core \
+    fonts-noto-ui-core \
+    fonts-noto-ui-extra \
+    fonts-noto-mono \
+    fonts-noto-mono-extra \
+    fonts-noto-hinted \
+    fonts-noto-unhinted
+RUN pip install selenium
+RUN wget -q -O /tmp/geckodriver-v0.29.1-linux64.tar.gz https://github.com/mozilla/geckodriver/releases/download/v0.29.1/geckodriver-v0.29.1-linux64.tar.gz && \
+    tar -xzf /tmp/geckodriver-v0.29.1-linux64.tar.gz -C /usr/bin && \
+    chmod +x /usr/bin/geckodriver && \
+    rm /tmp/geckodriver-v0.
 ENTRYPOINT [ "python3" ]
 CMD ["render.py" ]
