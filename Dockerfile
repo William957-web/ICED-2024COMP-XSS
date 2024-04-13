@@ -4,7 +4,7 @@ RUN pip3 install flask
 WORKDIR /app
 COPY . /app
 RUN rm /app/Dockerfile
-RUN apt-get update && apt-get upgrade
+RUN apt-get update
 RUN apt-get install npm
 RUN npm install -g phantomjs
 RUN pip3 install selenium==2.48.0
