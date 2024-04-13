@@ -15,7 +15,7 @@ def main():
 @app.route('/visit',  methods=['GET', 'POST'])
 def visit():
     if request.method == 'POST':
-        opts = FirefoxOptions()
+        opts = webdriver.FirefoxOptions()
         opts.add_argument("--headless")
         content=request.form['content']
         content=content.replace('%3C', '').replace('%3c', '').replace('%3E', '').replace('%3e', '').replace('<', '').replace('>', '')
