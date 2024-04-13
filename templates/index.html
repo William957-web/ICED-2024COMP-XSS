@@ -48,7 +48,7 @@
 <div class="container">
     <form action="visit" method="post">
         <div class="form-group">
-            <input type="text" name="long_input" placeholder="Whale%20says%2C%20%22Hello%20ocean%21%22" required>
+            <input type="text" name="content" id="content" placeholder="Whale%20says%2C%20%22Hello%20ocean%21%22" required>
             <input type="submit" value="送出">
         </div>
     </form>
@@ -56,6 +56,7 @@
 <center>
 <br>How would admin visit it with your url encoded payload?</br>
 <br>Example:<a href="?content=Whale%20says%2C%20%22Hello%20ocean%21%22">Click Me</a></br>
+<br>But %3C & %3E will be replaced, you can try it your self though...</br>
 <br></br>
 <sapn id="Outcome"></sapn>
 </center>
