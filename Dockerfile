@@ -7,13 +7,7 @@ RUN pip3 install webdriver_manager
 RUN wget https://chromedriver.storage.googleapis.com/103.0.5060.134/chromedriver_linux64.zip
 RUN apt-get update
 RUN wget -c https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-RUN dpkg -i google-chrome-stable_current_amd64.deb 
-RUN apt-get update
-RUN apt-get install -f
-RUN google-chrome -version
 RUN unzip chromedriver_linux64.zip 
-RUN mv chromedriver /usr/bin
-RUN chmod 777 /usr/bin/chromedriver
 WORKDIR /app
 COPY . /app
 RUN rm /app/Dockerfile
