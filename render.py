@@ -3,7 +3,6 @@ from selenium import webdriver
 from selenium.common.exceptions import WebDriverException
 import time 
 from flask import *
-browser = webdriver.Firefox()
 url = "https://iced-2024comp-xss.onrender.com/?content="
 app = Flask(__name__)
 
@@ -17,7 +16,14 @@ def main():
 def visit():
     if request.method == 'POST':
         content=request.form['content']
-        content=content.replace('%3C', '').replace('%3c', '').replace('%3E', '').replace('%3e', '')
+        content=content.replace('%3C', '').replace('%3c', '').replace('%3E', '').replace('%3e', '').replace('<', '').replace('>', '')
+        browser = webdriver.Firefox()
+        browser.get(url+content)
+        browser.add_cookie({'name':'flag','value':'ICED{XsS_repl@c3_WAf_c4n_B33_easily_pwned}','path':'/'})
+        browser.get(url)
+        time.sleep(2)
+        browser.quit()
+        return "Admin will visit it!"
     else:
         return "Method not allowed"
     
