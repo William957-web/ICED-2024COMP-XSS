@@ -28,7 +28,7 @@ def visit():
         service = Service(executable_path=ChromeDriverManager().install())
         content=request.form['content']
         content=content.replace('%3C', '').replace('%3c', '').replace('%3E', '').replace('%3e', '').replace('<', '').replace('>', '')
-        browser = webdriver.Firefox(service=service, options=opts)
+        browser = webdriver.Chrome(service=service, options=opts)
         browser.get(url+content)
         time.sleep(5)
         browser.add_cookie({'name':'flag','value':'ICED{XsS_repl@c3_WAf_c4n_B33_easily_pwned}','path':'/'})
