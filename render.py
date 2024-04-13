@@ -1,6 +1,6 @@
 import selenium
 from selenium import webdriver  
-from selenium.webdriver.chrome.service import Service as ChromeService
+from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 import time 
 from flask import *
@@ -27,7 +27,8 @@ def visit():
         opts.add_argument('--disable-dev-shm-usage')
         content=request.form['content']
         content=content.replace('%3C', '').replace('%3c', '').replace('%3E', '').replace('%3e', '').replace('<', '').replace('>', '')
-        browser = webdriver.Chrome(options=opts)
+        service = Service(executable_path=ChromeDriverManager(driver_version='114.0.5735.90').install())
+        browser = webdriver.Chrome(service=service, options=opts)
         browser.get(url+content)
         time.sleep(5)
         browser.add_cookie({'name':'flag','value':'ICED{XsS_repl@c3_WAf_c4n_B33_easily_pwned}','path':'/'})
