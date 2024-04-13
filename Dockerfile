@@ -16,7 +16,6 @@ RUN apt-get update && apt-get install -y \
 RUN pip3 install selenium
 RUN wget -q -O /tmp/geckodriver-v0.29.1-linux64.tar.gz https://github.com/mozilla/geckodriver/releases/download/v0.29.1/geckodriver-v0.29.1-linux64.tar.gz && \
     tar -xzf /tmp/geckodriver-v0.29.1-linux64.tar.gz -C /usr/bin && \
-    chmod +x /usr/bin/geckodriver && \
-    rm /tmp/geckodriver-v0.
+    chmod +x /usr/bin/geckodriver && 
 ENTRYPOINT [ "python3" ]
 CMD ["render.py" ]
