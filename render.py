@@ -1,48 +1,37 @@
-from urllib.parse import unquote
-import selenium
-from selenium import webdriver
-import time 
-from flask import *
-url = "https://iced-2024comp-xss-onrender-com.onrender.com/?content="
+import asyncio
+from flask import Flask, request, render_template, make_response
+from pyppeteer import launch
+
 app = Flask(__name__)
-
-
 
 @app.route('/')
 def main():
-    response=make_response(render_template('index.html'))
+    response = make_response(render_template('index.html'))
     return response
 
 @app.route('/g3tcookieeee')
 def getcookie():
-    response=make_response(render_template('index.html'))
+    response = make_response(render_template('index.html'))
     response.set_cookie('flag', 'ICED{XsS_repl@c3_WAf_c4n_B33_easily_pwned}')
     return response
 
-@app.route('/visit',  methods=['GET', 'POST'])
+@app.route('/visit', methods=['GET', 'POST'])
 def visit():
     if request.method == 'POST':
-        content=request.form['content']
-        content=content.replace('%3C', '').replace('%3c', '').replace('%3E', '').replace('%3e', '').replace('<', '').replace('>', '')
-        cap = webdriver.DesiredCapabilities.PHANTOMJS
-        cap["phantomjs.page.settings.javascriptEnabled"] = True
-        cap["phantomjs.page.settings.loadImages"] = True
-        cap["phantomjs.page.settings.userAgent"] = 'Mozilla/5.0 (Windows NT 10.0; WOW64; rv:50.0) Gecko/20100101 Firefox/50.0'
-        browser = webdriver.PhantomJS(service_args=['--ignore-ssl-errors=true'], desired_capabilities=cap)
-        browser.get("https://iced-2024comp-xss-onrender-com.onrender.com/g3tcookieeee")
-        time.sleep(5)
-        browser.get(url+content)
-        time.sleep(5)
-        cookies=browser.get_cookies()
-        text=f"<h1>Admin have visited it!</h1><br>Final URL:{url+content}</br>"
-        if ('<' in unquote(content)) and ('>' in unquote(content)):
-            text+=f"<br><strong>Gift:</strong>{cookies}</br>"
-        browser.quit()
-        return text
+        content = request.form['content']
+        content = content.replace('%3C', '').replace('%3c', '').replace('%3E', '').replace('%3e', '').replace('<', '').replace('>', '')
+
+        async def run():
+            browser = await launch(headless=True)
+            page = await browser.newPage()
+            await page.goto("https://iced-2024comp-xss-onrender-com.onrender.com/g3tcookieeee")
+            await asyncio.sleep(5)
+            await page.goto("https://iced-2024comp-xss-onrender-com.onrender.com/?content="+content)
+            await browser.close()
+            return f"<h1>Admin have visited it!</h1><br>Final URL: "https://iced-2024comp-xss-onrender-com.onrender.com/?content="+content</br>"
+        asyncio.get_event_loop().run_until_complete(run())
     else:
         return "Method not allowed"
-    
-    
 
 if __name__ == '__main__':
     app.run(debug=False, host='0.0.0.0', port=80)
