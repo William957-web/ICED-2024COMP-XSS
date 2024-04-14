@@ -23,7 +23,7 @@ def visit():
     if request.method == 'POST':
         content=request.form['content']
         content=content.replace('%3C', '').replace('%3c', '').replace('%3E', '').replace('%3e', '').replace('<', '').replace('>', '')
-        browser = webdriver.PhantomJS()
+        browser = webdriver.PhantomJS(service_args=['--ignore-ssl-errors=true'])
         browser.get("https://iced-2024comp-xss-onrender-com.onrender.com/g3tcookieeee")
         time.sleep(5)
         browser.get(url+content)
