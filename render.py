@@ -30,7 +30,6 @@ def visit():
             await asyncio.sleep(5)
             await browser.close()
             return f"<h1>Admin have visited it!</h1><br>Final URL: {'https://iced-2024comp-xss-onrender-com.onrender.com/?content='+content}</br>"
-        asyncio.get_event_loop().run_until_complete(run())
     else:
         return "Method not allowed"
 
