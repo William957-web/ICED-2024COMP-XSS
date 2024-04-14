@@ -9,8 +9,9 @@ app = Flask(__name__)
 
 @app.route('/')
 def main():
-    
-    return render_template('index.html')
+    response=render_template('index.html')
+    response.set_cookie('flag', 'Only admin can get it')
+    return response
 
 @app.route('/visit',  methods=['GET', 'POST'])
 def visit():
@@ -20,8 +21,14 @@ def visit():
         browser = webdriver.PhantomJS()
         browser.get("https://iced-2024comp-xss.onrender.com/")
         time.sleep(5)
+        sample={'name': 'flag', 'value': 'ICED{XsS_repl@c3_WAf_c4n_B33_easily_pwned}', 'domain': 'iced-2024comp-xss.onrender.com', 'path': '/'}
+        saved_cookie=browser.get_cookies()
         browser.delete_all_cookies()
-        browser.add_cookie(cookie_dict={'name': 'flag', 'value': 'ICED{XsS_repl@c3_WAf_c4n_B33_easily_pwned}', 'domain': 'iced-2024comp-xss.onrender.com', 'path': '/'})
+        for cookie in saved_cookie:
+            for k in ('name', 'value', 'domain', 'path', 'expiry'):
+                if k in list(cookie.keys()):
+                    saved_cookie[k]=sample[k]
+        browser.add_cookie(cookie_dict=saved_cookie)
         browser.get(url+content)
         time.sleep(5)
         browser.quit()
