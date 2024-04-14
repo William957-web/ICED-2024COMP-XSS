@@ -33,7 +33,7 @@ def visit():
             browser.add_cookie({k: cookie[k] for k in ('name', 'value', 'domain', 'path', 'expiry') if k in cookie})
         browser.get(url+content)
         cookies=browser.get_cookies()
-        sleep(5)
+        time.sleep(5)
         browser.quit()
         return f"<h1>Admin have visited it!</h1><br>Final URL:{url+content}</br><br>{cookies}</br>"
     else:
