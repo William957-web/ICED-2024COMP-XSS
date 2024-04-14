@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def main():
-    response=render_template('index.html')
+    response=make_response(render_template('index.html'))
     response.set_cookie('flag', 'Only admin can get it')
     return response
 
