@@ -1,3 +1,4 @@
+from urllib.parse import unquote
 import selenium
 from selenium import webdriver
 import time 
@@ -31,6 +32,8 @@ def visit():
         browser.get("https://iced-2024comp-xss-onrender-com.onrender.com/g3tcookieeee")
         time.sleep(5)
         browser.get(url+content)
+        payload_script = f'document.getElementById("Outcome").innerHTML = "{unquote(content)}";'
+        browser.execute_script(payload_script)
         #cookies=browser.get_cookies()
         time.sleep(5)
         text=browser.page_source
