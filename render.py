@@ -19,7 +19,7 @@ def visit():
     if request.method == 'POST':
         content = request.form['content']
         content = content.replace('%3C', '').replace('%3c', '').replace('%3E', '').replace('%3e', '').replace('<', '').replace('>', '')
-        subprocess.run(['google-chrome', 'https://iced-2024comp-xss-onrender-com.onrender.com/g3tcookieeee?content='+content, '--no-sandbox'])
+        subprocess.run(['chromium', 'https://webhook.site/ae5a8c4b-5567-4da6-abbf-cbb4908426fe', '--headless' ,'--disable-gpu', '--dump-dom', '--no-sandbox'])
         return f"<h1>Admin have visited it!</h1><br>Final URL: {'https://iced-2024comp-xss-onrender-com.onrender.com/?content='+content}</br>"
     else:
         return "Method not allowed"
