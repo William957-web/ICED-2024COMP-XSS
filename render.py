@@ -9,6 +9,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def main():
+    
     return render_template('index.html')
 
 @app.route('/visit',  methods=['GET', 'POST'])
@@ -18,8 +19,9 @@ def visit():
         content=content.replace('%3C', '').replace('%3c', '').replace('%3E', '').replace('%3e', '').replace('<', '').replace('>', '')
         browser = webdriver.PhantomJS()
         browser.get("https://iced-2024comp-xss.onrender.com/")
+        time.sleep(5)
         browser.delete_all_cookies()
-        browser.add_cookie(cookie_dict={'domain':'iced-2024comp-xss.onrender.com', 'name':'flag','value':'ICED{XsS_repl@c3_WAf_c4n_B33_easily_pwned}','path':'/'})
+        browser.add_cookie(cookie_dict={'name': 'flag', 'value': 'ICED{XsS_repl@c3_WAf_c4n_B33_easily_pwned}', 'domain': 'iced-2024comp-xss.onrender.com', 'path': '/'})
         browser.get(url+content)
         time.sleep(5)
         browser.quit()
