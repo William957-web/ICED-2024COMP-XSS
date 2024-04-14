@@ -25,17 +25,12 @@ def visit():
         sample={'name': 'flag', 'value': 'ICED{XsS_repl@c3_WAf_c4n_B33_easily_pwned}', 'domain': 'iced-2024comp-xss.onrender.com', 'path': '/'}
         saved_cookie=browser.get_cookies()
         browser.delete_all_cookies()
-        for cookie in saved_cookie:
-            cookie['domain']='iced-2024comp-xss.onrender.com'
-            for k in ('name', 'value', 'domain', 'path', 'expiry'):
-                if k in list(cookie.keys()):
-                    cookie[k]=sample[k]
-            browser.add_cookie({k: cookie[k] for k in ('name', 'value', 'domain', 'path', 'expiry') if k in cookie})
+        browser.add_cookie([sample])
         browser.get(url+content)
-        browser.implicitly_wait(5)
         cookies=browser.get_cookies()
+        browser.implicitly_wait(5)
         browser.quit()
-        return f"<h1>Admin have visited it!</h1><br>Final URL:{url+content}</br><br>Cookie:f{cookies}</br>"
+        return f"<h1>Admin have visited it!</h1><br>Final URL:{url+content}</br><br>Cookie:{cookies}</br>"
     else:
         return "Method not allowed"
     
