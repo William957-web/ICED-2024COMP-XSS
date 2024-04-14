@@ -10,7 +10,7 @@ app = Flask(__name__)
 @app.route('/')
 def main():
     response=make_response(render_template('index.html'))
-    if !request.cookies.get('flag'):
+    if 'flag' not in request.cookies:
         response.set_cookie('flag', 'Only admin can get it')
     return response
 
