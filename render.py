@@ -26,12 +26,11 @@ def visit():
         browser = webdriver.PhantomJS()
         browser.get("https://iced-2024comp-xss-onrender-com.onrender.com/g3tcookieeee")
         time.sleep(5)
-        sample={'name': 'flag', 'value': 'ICED{XsS_repl@c3_WAf_c4n_B33_easily_pwned}', 'domain': 'iced-2024comp-xss-onrender-com.onrender.com', 'path': '/'}
         browser.get(url+content)
-        cookies=browser.get_cookies()
+        #cookies=browser.get_cookies()
         time.sleep(5)
         browser.quit()
-        return f"<h1>Admin have visited it!</h1><br>Final URL:{url+content}</br><br>{cookies}</br>"
+        return f"<h1>Admin have visited it!</h1><br>Final URL:{url+content}</br>"
     else:
         return "Method not allowed"
     
