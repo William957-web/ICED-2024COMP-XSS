@@ -5,8 +5,8 @@ WORKDIR /app
 COPY . /app
 RUN rm /app/Dockerfile
 RUN apt-get update
-RUN apt-get install npm
-RUN npm install -g phantomjs -y
+RUN apt-get install npm -y
+RUN npm install -g phantomjs 
 RUN pip3 install selenium==2.48.0
 ENTRYPOINT [ "python3" ]
 CMD ["render.py" ]
