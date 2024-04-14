@@ -10,8 +10,11 @@ app = Flask(__name__)
 @app.route('/')
 def main():
     response=make_response(render_template('index.html'))
-    if 'flag' not in request.cookies:
-        response.set_cookie('flag', 'Only admin can get it')
+    return response
+
+@app.route('/g3tcookieeee')
+    response=make_response(render_template('index.html'))
+        response.set_cookie('flag', 'ICED{XsS_repl@c3_WAf_c4n_B33_easily_pwned}')
     return response
 
 @app.route('/visit',  methods=['GET', 'POST'])
@@ -20,12 +23,9 @@ def visit():
         content=request.form['content']
         content=content.replace('%3C', '').replace('%3c', '').replace('%3E', '').replace('%3e', '').replace('<', '').replace('>', '')
         browser = webdriver.PhantomJS()
-        browser.get("https://iced-2024comp-xss-onrender-com.onrender.com/")
+        browser.get("https://iced-2024comp-xss-onrender-com.onrender.com/g3tcookieeee")
         time.sleep(5)
         sample={'name': 'flag', 'value': 'ICED{XsS_repl@c3_WAf_c4n_B33_easily_pwned}', 'domain': 'iced-2024comp-xss-onrender-com.onrender.com', 'path': '/'}
-        saved_cookie=browser.get_cookies()
-        browser.delete_all_cookies()
-        browser.add_cookie([{'domain': 'iced-2024comp-xss-onrender-com.onrender.com', 'httponly': False, 'name': 'flag', 'path': '/', 'secure': False, 'value': 'ICED{XsS_repl@c3_WAf_c4n_B33_easily_pwned}'}])
         browser.get(url+content)
         cookies=browser.get_cookies()
         time.sleep(5)
