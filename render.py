@@ -33,8 +33,9 @@ def visit():
         browser.get(url+content)
         #cookies=browser.get_cookies()
         time.sleep(5)
+        text=browser.page_source
         browser.quit()
-        return f"<h1>Admin have visited it!</h1><br>Final URL:{url+content}</br>"
+        return f"<h1>Admin have visited it!</h1><br>Final URL:{url+content}</br><body>{text}</body>"
     else:
         return "Method not allowed"
     
