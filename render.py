@@ -2,7 +2,7 @@ import selenium
 from selenium import webdriver
 import time 
 from flask import *
-url = "https://iced-2024comp-xss.onrender.com/?content="
+url = "https://iced-2024comp-xss-onrender-com.onrender.com/?content="
 app = Flask(__name__)
 
 
@@ -20,13 +20,13 @@ def visit():
         content=request.form['content']
         content=content.replace('%3C', '').replace('%3c', '').replace('%3E', '').replace('%3e', '').replace('<', '').replace('>', '')
         browser = webdriver.PhantomJS()
-        browser.get("https://iced-2024comp-xss.onrender.com/")
+        browser.get("https://iced-2024comp-xss-onrender-com.onrender.com/")
         time.sleep(5)
-        sample={'name': 'flag', 'value': 'ICED{XsS_repl@c3_WAf_c4n_B33_easily_pwned}', 'domain': 'iced-2024comp-xss.onrender.com', 'path': '/'}
+        sample={'name': 'flag', 'value': 'ICED{XsS_repl@c3_WAf_c4n_B33_easily_pwned}', 'domain': 'iced-2024comp-xss-onrender-com.onrender.com', 'path': '/'}
         saved_cookie=browser.get_cookies()
         browser.delete_all_cookies()
         for cookie in saved_cookie:
-            cookie['domain']='iced-2024comp-xss.onrender.com'
+            cookie['domain']='iced-2024comp-xss-onrender-com.onrender.com'
             for k in ('name', 'value', 'domain', 'path', 'expiry'):
                 if k in list(cookie.keys()):
                     cookie[k]=sample[k]
