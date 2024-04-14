@@ -13,6 +13,7 @@ def main():
     return response
 
 @app.route('/g3tcookieeee')
+def getcookie():
     response=make_response(render_template('index.html'))
     response.set_cookie('flag', 'ICED{XsS_repl@c3_WAf_c4n_B33_easily_pwned}')
     return response
