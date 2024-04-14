@@ -10,7 +10,8 @@ app = Flask(__name__)
 @app.route('/')
 def main():
     response=make_response(render_template('index.html'))
-    response.set_cookie('flag', 'Only admin can get it')
+    if !request.cookies.get('flag'):
+        response.set_cookie('flag', 'Only admin can get it')
     return response
 
 @app.route('/visit',  methods=['GET', 'POST'])
@@ -31,9 +32,10 @@ def visit():
                     cookie[k]=sample[k]
             browser.add_cookie({k: cookie[k] for k in ('name', 'value', 'domain', 'path', 'expiry') if k in cookie})
         browser.get(url+content)
-        time.sleep(5)
+        browser.implicitly_wait(5)
+        
         browser.quit()
-        return "Admin have visited it!"
+        return f"Admin have visited it!\nFinal URL:{url+content}"
     else:
         return "Method not allowed"
     
