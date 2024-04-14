@@ -29,7 +29,7 @@ def visit():
             for k in ('name', 'value', 'domain', 'path', 'expiry'):
                 if k in list(cookie.keys()):
                     cookie[k]=sample[k]
-        browser.add_cookie(cookie_dict=saved_cookie)
+            browser.add_cookie({k: cookie[k] for k in ('name', 'value', 'domain', 'path', 'expiry') if k in cookie})
         browser.get(url+content)
         time.sleep(5)
         browser.quit()
