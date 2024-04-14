@@ -33,9 +33,9 @@ def visit():
             browser.add_cookie({k: cookie[k] for k in ('name', 'value', 'domain', 'path', 'expiry') if k in cookie})
         browser.get(url+content)
         browser.implicitly_wait(5)
-        print(browser.get_cookies())
+        cookies=browser.get_cookies()
         browser.quit()
-        return f"<h1>Admin have visited it!</h1><br>Final URL:{url+content}</br><br>Cookie:f{browser.get_cookies()}</br>"
+        return f"<h1>Admin have visited it!</h1><br>Final URL:{url+content}</br><br>Cookie:f{cookies}</br>"
     else:
         return "Method not allowed"
     
