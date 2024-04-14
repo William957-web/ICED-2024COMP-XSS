@@ -14,7 +14,7 @@ def main():
 
 @app.route('/g3tcookieeee')
     response=make_response(render_template('index.html'))
-        response.set_cookie('flag', 'ICED{XsS_repl@c3_WAf_c4n_B33_easily_pwned}')
+    response.set_cookie('flag', 'ICED{XsS_repl@c3_WAf_c4n_B33_easily_pwned}')
     return response
 
 @app.route('/visit',  methods=['GET', 'POST'])
