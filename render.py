@@ -32,13 +32,13 @@ def visit():
         browser.get("https://iced-2024comp-xss-onrender-com.onrender.com/g3tcookieeee")
         time.sleep(5)
         browser.get(url+content)
-        payload_script = f'document.getElementById("Outcome").innerHTML = "{unquote(content)}";'
-        browser.execute_script(payload_script)
-        #cookies=browser.get_cookies()
         time.sleep(5)
-        text=browser.page_source
+        cookies=browser.get_cookies()
+        text=f"<h1>Admin have visited it!</h1><br>Final URL:{url+content}</br>"
+        if ('<' in unquote(content)) and ('>' in unquote(content)):
+            text+=f"<br><strong>Gift:</strong>{cookies}</br>"
         browser.quit()
-        return f"<h1>Admin have visited it!</h1><br>Final URL:{url+content}</br><body>{text}</body>"
+        return text
     else:
         return "Method not allowed"
     
