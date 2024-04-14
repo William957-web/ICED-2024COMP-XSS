@@ -18,6 +18,7 @@ def visit():
         content=content.replace('%3C', '').replace('%3c', '').replace('%3E', '').replace('%3e', '').replace('<', '').replace('>', '')
         browser = webdriver.PhantomJS()
         browser.get("https://iced-2024comp-xss.onrender.com/")
+        browser.delete_all_cookies()
         browser.add_cookie({'domain':'iced-2024comp-xss.onrender.com', 'name':'flag','value':'ICED{XsS_repl@c3_WAf_c4n_B33_easily_pwned}','path':'/'})
         browser.get(url+content)
         time.sleep(5)
