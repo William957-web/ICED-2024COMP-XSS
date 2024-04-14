@@ -25,10 +25,10 @@ def visit():
         saved_cookie=browser.get_cookies()
         browser.delete_all_cookies()
         for cookie in saved_cookie:
+            cookie['domain']='iced-2024comp-xss.onrender.com'
             for k in ('name', 'value', 'domain', 'path', 'expiry'):
                 if k in list(cookie.keys()):
-                    saved_cookie[k]=sample[k]
-        saved_cookie['domain']='iced-2024comp-xss.onrender.com'
+                    cookie[k]=sample[k]
         browser.add_cookie(cookie_dict=saved_cookie)
         browser.get(url+content)
         time.sleep(5)
