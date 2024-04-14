@@ -35,7 +35,7 @@ def visit():
         browser.implicitly_wait(5)
         print(browser.get_cookies())
         browser.quit()
-        return f"Admin have visited it!\nFinal URL:{url+content}"
+        return f"<h1>Admin have visited it!</h1><br>Final URL:{url+content}</br><br>Cookie:f{browser.get_cookies()}</br>"
     else:
         return "Method not allowed"
     
