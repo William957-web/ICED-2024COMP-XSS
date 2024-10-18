@@ -1,7 +1,7 @@
 FROM python:3.9
 
-RUN sed -i 's/deb.debian.org/mirror.twds.com.tw/g' /etc/apt/sources.list
-RUN sed -i 's/security.debian.org/mirror.twds.com.tw/g' /etc/apt/sources.list
+RUN sed -i 's/deb.debian.org/mirror.twds.com.tw/g' /etc/apt/sources.list.d/debian.sources
+RUN sed -i 's/security.debian.org/mirror.twds.com.tw/g' /etc/apt/sources.list.d/debian.sources
 
 RUN pip3 install --upgrade pip
 RUN pip3 install flask
